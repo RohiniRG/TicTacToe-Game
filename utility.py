@@ -29,3 +29,50 @@ def reset_board():
              1: ' ', 2: ' ', 3: ' '}
 
     return board
+
+def interchange_players_turns(player1, player2,name, turn):
+    if turn == "X":
+        turn = "0"
+    else:
+        turn = "X"
+
+    if name == player1:
+        name = player2
+    else:
+        name = player1
+
+    return turn,name
+
+def checking_count(count, board):
+    if count >= 5:
+
+        # Horizontal Lines
+        if board[7] == board[8] == board[9] != " ":
+            return board[7]
+
+        elif board[4] == board[5] == board[6] != " ":
+            return board[4]
+
+        elif board[1] == board[2] == board[3] != " ":
+            return board[1]
+
+        # Vertical Line
+        elif board[7] == board[4] == board[1] != " ":
+            return board[7]
+
+        elif board[8] == board[5] == board[2] != " ":
+            return board[8]
+
+        elif board[9] == board[6] == board[3] != " ":
+            return board[9]
+
+        # Diagonals
+        elif board[7] == board[5] == board[3] != " ":
+            return board[7]
+
+        elif board[9] == board[5] == board[1] != " ":
+            return board[9]
+
+    # if no one wins
+    if count == 9:
+        return "red"
