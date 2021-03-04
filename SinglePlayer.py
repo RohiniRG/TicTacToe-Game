@@ -29,7 +29,7 @@ def single_player():
 
             else:
                 user_input = random.choice(unoccupied)
-                unoccupied.remove(user_input)
+            unoccupied.remove(user_input)
 
             if 0 < user_input < 10:
                 # IF true then checking if the space is already occupied
@@ -48,80 +48,17 @@ def single_player():
 
         utility.print_board(board)
 
-        # min count required is 5 to check if one wins or not
-        if count >= 5:
-
-            # Horizontal Lines
-            if board[7] == board[8] == board[9] != " ":
-                if board[7] == turn:
-                    print(f"{player1} WINS")
-                else:
-                    print(f'{comp} WINS')
+        ans = utility.checking_count(count, board)
+        if ans == 'X' or ans == '0':
+            if ans == turn:
+                print(f"{player1} WINS")
+                break
+            elif ans == "red":
+                print("Match Tie")
+                break
+            else:
+                print(f'{comp} WINS')
                 break
 
-            elif board[4] == board[5] == board[6] != " ":
-                if board[4] == turn:
-                    print(f"{player1} WINS")
-                else:
-                    print(f'{comp} WINS')
-                break
-
-            elif board[1] == board[2] == board[3] != " ":
-                if board[1] == turn:
-                    print(f"{player1} WINS")
-                else:
-                    print(f'{comp} WINS')
-                break
-
-            # Vertical Line
-            elif board[7] == board[4] == board[1] != " ":
-                if board[7] == turn:
-                    print(f"{player1} WINS")
-                else:
-                    print(f'{comp} WINS')
-                break
-
-            elif board[8] == board[5] == board[2] != " ":
-                if board[8] == turn:
-                    print(f"{player1} WINS")
-                else:
-                    print(f'{comp} WINS')
-                break
-
-            elif board[9] == board[6] == board[3] != " ":
-                if board[9] == turn:
-                    print(f"{player1} WINS")
-                else:
-                    print(f'{comp} WINS')
-                break
-
-            # Diagonals
-            elif board[7] == board[5] == board[3] != " ":
-                if board[7] == turn:
-                    print(f"{player1} WINS")
-                else:
-                    print(f'{comp} WINS')
-                break
-
-            elif board[9] == board[5] == board[1] != " ":
-                if board[9] == turn:
-                    print(f"{player1} WINS")
-                else:
-                    print(f'{comp} WINS')
-                break
-
-        # if no one wins
-        if count == 9:
-            print("Match Tie")
-            break
-
-        # To interchange players
-        if turn == "X":
-            turn = "0"
-        else:
-            turn = "X"
-
-        if name == player1:
-            name = comp
-        else:
-            name = player1
+        # To interchange players        
+        turn, name = utility.interchange_players_turns(player1,comp,name,turn)
