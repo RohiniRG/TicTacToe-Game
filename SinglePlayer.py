@@ -16,7 +16,7 @@ def single_player():
         # Taking input from the user b/w 0 to 9
         exist = 1
         while exist:
-            print(f"{name}'s chance!!!. Choose an occupied space :")
+            print(f"{name}'s chance!!!. Choose an unoccupied space :")
 
             if name == player1:
                 try:
@@ -30,7 +30,7 @@ def single_player():
             else:
                 user_input = utility.comp_chance(unoccupied, board, count)
 
-            unoccupied.remove(user_input)
+            
 
             if 0 < user_input < 10:
                 # IF true then checking if the space is already occupied
@@ -47,6 +47,7 @@ def single_player():
                 print("!!!Enter Again!!!")
                 exist = 1
 
+        unoccupied.remove(user_input)
         utility.print_board(board)
 
         if count == 9:

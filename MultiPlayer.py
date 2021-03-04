@@ -13,7 +13,7 @@ def multi_player():
         # Taking input from the user b/w 0 to 9
         exist = 1
         while exist:
-            print(f"{name}'s chance!!!. Choose an occupied space :")
+            print(f"{name}'s chance!!!. Choose an unoccupied space :")
 
             try:
                 user_input = int(input())
