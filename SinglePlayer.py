@@ -28,7 +28,8 @@ def single_player():
                     continue
 
             else:
-                user_input = random.choice(unoccupied)
+                user_input = utility.comp_chance(unoccupied, board, count)
+
             unoccupied.remove(user_input)
 
             if 0 < user_input < 10:
@@ -48,17 +49,16 @@ def single_player():
 
         utility.print_board(board)
 
+        if count == 9:
+            print("Match Tie")
+            break
+
         ans = utility.checking_count(count, board)
+
         if ans == 'X' or ans == '0':
-            if ans == turn:
-                print(f"{player1} WINS")
-                break
-            elif ans == "red":
-                print("Match Tie")
-                break
-            else:
-                print(f'{comp} WINS')
-                break
+            name = utility.playerName_move[ans]
+            print(f"{name} WINS")
+            break
 
         # To interchange players        
         turn, name = utility.interchange_players_turns(player1,comp,name,turn)
