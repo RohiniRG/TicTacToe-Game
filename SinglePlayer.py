@@ -48,7 +48,6 @@ def single_player():
                 exist = 1
 
         unoccupied.remove(user_input)
-
         utility.print_board(board)
 
         if count == 9:
