@@ -56,7 +56,7 @@ def interchange_players_turns(player1, player2,name, turn):
     return turn,name
 
 def checking_count(count, board):
-    if count >= 5:
+    if count > 2:
 
         # Horizontal Lines
         if board[7] == board[8] == board[9] != " ":
