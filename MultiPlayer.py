@@ -41,17 +41,15 @@ def multi_player():
         utility.print_board(board)
         
         print(count)
+        if count == 9:
+            print("Match Tie")
+            break
+
         ans = utility.checking_count(count, board)
         if ans == 'X' or ans == '0':
-            if ans == turn:
-                print(f"{player2} WINS")
-                break
-            elif ans == "red":
-                print("Match Tie")
-                break
-            else:
-                print(f'{player1} WINS')
-                break
+            name = utility.playerName_move[ans]
+            print(f"{name} WINS")
+            break
 
 
         # To interchange players        

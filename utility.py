@@ -1,11 +1,23 @@
+import random
+playerName_move = {}
+
 def player_assignment(num):
     player1 = input("Enter the Name of PLAYER 1: ")
-    player2 = None
+    player2 = 'Computer'
     if num == 2:
         player2 = input("Enter the Name of PLAYER 2: ")
 
     while True:
         turn = input(f"{player1} choose X or 0: ").upper()
+        
+        if turn == "X":
+            turn2 = "0"
+            playerName_move[turn2] = player2
+        else:
+            turn2 = "X"
+            playerName_move[turn2] = player2
+
+        playerName_move[turn] = player1
 
         if turn == "X" or turn == "0":
             # player1_turn = turn
@@ -72,7 +84,39 @@ def checking_count(count, board):
 
         elif board[9] == board[5] == board[1] != " ":
             return board[9]
+    
 
-    # if no one wins
-    if count == 9:
-        return "red"
+def comp_chance(possibleMoves, board, count):
+    
+    for chance in ["X", "0"]:
+        for i in possibleMoves:
+            boardCopy = board.copy()
+            boardCopy[i] = chance
+            comp_move = checking_count(count, boardCopy)
+            if comp_move:
+                return i
+        
+    cornersOpen = []
+    for i in possibleMoves:
+        if i in [1,3,9,7]:
+            cornersOpen.append(i)
+
+    if len(cornersOpen) > 0:
+        comp_move = random.choice(cornersOpen)
+        return comp_move
+
+    if 5 in possibleMoves:
+        comp_move = 5
+        return comp_move
+
+    edgesOpen = []
+    for i in possibleMoves:
+        if i in [8,4,2,6]:
+            edgesOpen.append(i)
+
+    if len(edgesOpen) > 0:
+        comp_move = random.choice(edgesOpen)
+        return comp_move
+
+    
+
